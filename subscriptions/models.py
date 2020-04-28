@@ -9,6 +9,7 @@ class Subscription(models.Model):
     email = models.EmailField(unique=True)
     activation_token = models.UUIDField(default=uuid.uuid4, editable=False)
     deletion_token = models.UUIDField(default=uuid.uuid4, editable=False)
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name}  {self.email}'
