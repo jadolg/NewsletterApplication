@@ -1,5 +1,4 @@
-import logging
-
+from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,7 +12,12 @@ def subscription_create(request):
     Create an inactive subscription.
     Will send an email to the subscriber with the activation URL containing the activation token
     """
-    pass
+    serializer = SubscriptionSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        # TODO: Send an email to the subscriber containing the activation code
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', ])
