@@ -38,4 +38,7 @@ def subscription_delete(request, deletion_token):
     """
     Deletes a subscription given a deletion token
     """
-    pass
+    subscription = get_object_or_404(Subscription.objects.all(), deletion_token=deletion_token)
+    serializer = SubscriptionSerializer(subscription)
+    subscription.delete()
+    return Response(serializer.data, status=status.HTTP_200_OK)
