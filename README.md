@@ -2,7 +2,7 @@
 
 This is a sample django project written as answer for a job interview code challenge.
 
-[![Build Status](https://travis-ci.org/jadolg/NewsletterApplication.svg?branch=master)](https://travis-ci.org/jadolg/NewsletterApplication) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/102ff10966d14df589aa1a5e2f70ef92)](https://www.codacy.com/manual/jadolg/NewsletterApplication?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jadolg/NewsletterApplication&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/jadolg/NewsletterApplication.svg?branch=master)](https://travis-ci.org/jadolg/NewsletterApplication) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/102ff10966d14df589aa1a5e2f70ef92)](https://www.codacy.com/manual/jadolg/NewsletterApplication?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jadolg/NewsletterApplication&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/jadolg/NewsletterApplication/branch/master/graph/badge.svg)](https://codecov.io/gh/jadolg/NewsletterApplication)
 
 ## Requirements
 
