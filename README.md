@@ -6,15 +6,18 @@ This is a sample django project written as answer for a job interview code chall
 
 ## Requirements
 
-- Docker (https://docs.docker.com/get-docker/)
-- docker-compose (https://docs.docker.com/compose/install/)
-- Make (https://www.gnu.org/software/make/manual/html_node/index.html)
+- [Docker](https://docs.docker.com/get-docker/)
+- [docker-compose](https://docs.docker.com/compose/install/)
+- [Make](https://www.gnu.org/software/make/manual/html_node/index.html)
 
 ## How to test
 
 Executing `make test_docker` will execute all the tests inside a docker container.
 
-## How to run 
+## How to run
+
 1. Make a copy of `.env.example` named `.env`
+
 2. Write proper values on `.env`  
-3. Execute `make run` 
+
+3. Execute `make run`
