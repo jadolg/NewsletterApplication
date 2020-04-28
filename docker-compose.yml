@@ -1,0 +1,21 @@
+version: '3'
+services:
+  database:
+    image: postgres:12.2
+    environment:
+      - POSTGRES_DB=newsletter
+      - POSTGRES_PASSWORD=${NEWSLETTER_DB_PASSWORD}
+      - POSTGRES_USER=${NEWSLETTER_DB_USER}
+
+  newsletter_application:
+    image: ${DOCKER_IMAGE}
+    build:
+      context: .
+    links:
+      - database
+    ports:
+      - 8000:8000
+    environment:
+      - NEWSLETTER_DB_PASSWORD=${NEWSLETTER_DB_PASSWORD}
+      - NEWSLETTER_DB_USER=${NEWSLETTER_DB_USER}
+      - NEWSLETTER_SECURE_KEY=${NEWSLETTER_SECURE_KEY}

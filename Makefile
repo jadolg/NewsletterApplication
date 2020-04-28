@@ -3,7 +3,7 @@ DOCKER_IMAGE = newsletter-application:$(DOCKER_TAG)
 
 .PHONY:
 build:
-	docker build -t $(DOCKER_IMAGE) .
+	DOCKER_IMAGE=$(DOCKER_IMAGE) docker-compose build
 
 test_docker: build
 	docker run -e NEWSLETTER_DEBUG=True --rm -it $(DOCKER_IMAGE) python manage.py test
@@ -12,3 +12,6 @@ test_docker: build
 test:
 	NEWSLETTER_DEBUG=True python manage.py test
 	NEWSLETTER_DEBUG=True python manage.py test test_pep8
+
+run: build
+	DOCKER_IMAGE=$(DOCKER_IMAGE) docker-compose up

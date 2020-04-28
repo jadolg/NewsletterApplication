@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import logging
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,12 +19,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o=9r5-h#7$b-ky)6_$4wk2-!@ny(c_4^4_())-78k)du$!f2cn'
+SECRET_KEY = os.getenv('NEWSLETTER_SECURE_KEY', 'thisKeyIsNotSecure')
+if SECRET_KEY == 'thisKeyIsNotSecure':
+    logging.warning('you are using an insecure key. Please set NEWSLETTER_SECURE_KEY variable to a valid key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("NEWSLETTER_DEBUG", False)
+if DEBUG:
+    logging.warning("your application is running with active debug. Don't run with debug turned on in production!")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -73,13 +77,23 @@ WSGI_APPLICATION = 'NewsletterApplication.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'newsletter',
+            'USER': os.getenv('NEWSLETTER_DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('NEWSLETTER_DB_PASSWORD', 'postgres'),
+            'HOST': os.getenv('NEWSLETTER_DB_HOST', 'database'),
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
