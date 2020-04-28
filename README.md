@@ -18,6 +18,6 @@ Executing `make test_docker` will execute all the tests inside a docker containe
 
 1. Make a copy of `.env.example` named `.env`
 
-2. Write proper values on `.env`  
+2. Write proper values on `.env` 
 
 3. Execute `make run`
