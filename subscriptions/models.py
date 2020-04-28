@@ -11,4 +11,5 @@ class Subscription(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.name}  {self.email}'
+        return f'name: {self.name} email: {self.email} ' \
+               f'activation token: {self.activation_token} deletion_token: {self.deletion_token}'
