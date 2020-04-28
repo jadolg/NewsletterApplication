@@ -1,3 +1,5 @@
+import json
+
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -15,6 +17,8 @@ class SubscriptionConfirmTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK, 'status code does not match')
         subscription.refresh_from_db()
         self.assertTrue(subscription.is_active, 'subscription is not active')
+        self.assertEqual(json.loads(response.content),
+                         {'name': 'name1', 'email': 'email@domain.com', 'is_active': True}, 'expected result mismatch')
 
     def test_confirm_subscription_with_non_existing_token_returns_error(self):
         response = self.client.post(
