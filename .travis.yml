@@ -7,9 +7,10 @@ services:
 - docker
 
 before_install:
-- pip install docker-compose
+- pip install docker-compose coverage
 - pip install -r requirements.txt
 
 script:
 - make test_docker
 - make test
+- bash <(curl -s https://codecov.io/bash)
