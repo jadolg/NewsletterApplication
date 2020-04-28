@@ -1,0 +1,2 @@
+# NewsletterApplication
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/122c5f347c2e46d39bffe0199c05ce27)](https://app.codacy.com/manual/jadolg/NewsletterApplication?utm_source=github.com&utm_medium=referral&utm_content=jadolg/NewsletterApplication&utm_campaign=Badge_Grade_Dashboard)
