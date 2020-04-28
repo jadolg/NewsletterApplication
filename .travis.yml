@@ -8,6 +8,8 @@ services:
 
 before_install:
 - pip install docker-compose
+- pip install -r requirements.txt
 
 script:
 - make test_docker
+- make test
