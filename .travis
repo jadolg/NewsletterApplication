@@ -13,4 +13,4 @@ before_install:
 - pip install docker-compose
 
 script:
-- make build
+- make test_docker
