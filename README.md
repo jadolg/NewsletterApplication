@@ -17,7 +17,66 @@ Executing `make test_docker` will execute all the tests inside a docker containe
 ## How to run
 
 1. Make a copy of `.env.example` named `.env`
-
 2. Write proper values on `.env` 
-
 3. Execute `make run`
+
+## How to use the API
+
+### Creating a subscription
+
+First the user must subscribe to the newsletter sending the name and email.
+The system should send and email containing the frontend URLs for confirming and deleting the subscription.payload
+
+curl request
+```bash
+curl -H "Content-Type: application/json" http://localhost:8000/subscriptions/ -d '{"name":"Matt Verne", "email":"matt@hello.io"}'
+```
+
+response
+201 Created
+```json
+{
+   "email" : "matt@hello.io",
+   "is_active" : false,
+   "name" : "Matt Verne"   
+}
+```
+*note:* If DEBUG is set to True the secret ID of the subscription is also coming in the json as no email is going to be sent. 
+
+### Confirming a subscription
+
+Once the user has created a subscription it's time to activate it.
+The frontend should send a call to the activation endpoint with the token provided on the email.
+
+curl request
+```bash
+curl -X POST http://localhost:8000/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198/confirm
+```
+
+response
+200 OK
+```json
+{
+   "email" : "matt@hello.io",
+   "is_active" : true,
+   "name" : "Matt Verne"
+}
+```
+
+### Deleting a subscription
+
+curl request
+```bash
+curl -X DELETE http://localhost:8000/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198
+```
+
+response
+200 OK
+```json
+{
+   "email" : "matt@hello.io",
+   "is_active" : false,
+   "name" : "Matt Verne"
+}
+
+```
