@@ -25,7 +25,8 @@ Executing `make test_docker` will execute all the tests inside a docker containe
 ### Creating a subscription
 
 First the user must subscribe to the newsletter sending the name and email.
-The system should send and email containing the frontend URLs for confirming and deleting the subscription.payload
+The system should send and email containing the frontend URLs for confirming and deleting the subscription.
+These URLs should contain the subscription secret ID which is used by the service to confirm and delete subscriptions.
 
 curl request
 ```bash
