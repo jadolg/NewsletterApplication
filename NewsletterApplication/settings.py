@@ -24,12 +24,13 @@ if SECRET_KEY == 'thisKeyIsNotSecure':
     logging.warning('you are using an insecure key. Please set NEWSLETTER_SECURE_KEY variable to a valid key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("NEWSLETTER_DEBUG", False)
+DEBUG = os.getenv("NEWSLETTER_DEBUG", True)
 if DEBUG:
     logging.warning("your application is running with active debug. Don't run with debug turned on in production!")
 
 ALLOWED_HOSTS = ['*', ]
 
+use_postgres = os.getenv("NEWSLETTER_USE_POSTGRES", False)
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,14 +78,7 @@ WSGI_APPLICATION = 'NewsletterApplication.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
+if use_postgres:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -94,6 +88,14 @@ else:
             'HOST': os.getenv('NEWSLETTER_DB_HOST', 'database'),
         }
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -129,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 PROJECT_DIR = os.path.dirname(__file__)
 TEST_PEP8_DIRS = [os.path.dirname(PROJECT_DIR), ]
