@@ -24,7 +24,7 @@ if SECRET_KEY == 'thisKeyIsNotSecure':
     logging.warning('you are using an insecure key. Please set NEWSLETTER_SECURE_KEY variable to a valid key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("NEWSLETTER_DEBUG", True)
+DEBUG = os.getenv("NEWSLETTER_DEBUG", "true").lower() == 'true'
 if DEBUG:
     logging.warning("your application is running with active debug. Don't run with debug turned on in production!")
 
