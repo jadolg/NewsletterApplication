@@ -20,6 +20,15 @@ Executing `make test_docker` will execute all the tests inside a docker containe
 2. Write proper values on `.env` 
 3. Execute `make run`
 
+## How to run in development
+
+1. Create a new virtual environment `python3 -m virtualenv newsletter` and activate it `source newsletter/bin/activate`
+2. Install the requirements `pip install -r requirements.txt`
+3. Run the migrations `python manage.py migrate`
+4. Start the server `python manage.py runserver`
+
+*note:* Default configuration will use `DEBUG=True` and sqlite database to avoid the hassles of starting postgres. No environment variable is needed in development.
+
 ## How to use the API
 
 ### Creating a subscription
