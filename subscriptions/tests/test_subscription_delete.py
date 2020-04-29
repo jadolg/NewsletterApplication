@@ -12,11 +12,11 @@ class SubscriptionDeleteTests(APITestCase):
         subscription = Subscription.objects.create(name='name1', email='email@domain.com')
         self.assertEqual(Subscription.objects.count(), 1)
         response = self.client.delete(
-            reverse('delete-subscription', kwargs={'deletion_token': subscription.deletion_token}))
+            reverse('delete-subscription', kwargs={'id': subscription.id}))
         self.assertEqual(response.status_code, status.HTTP_200_OK, 'status code does not match')
         self.assertEqual(Subscription.objects.count(), 0)
 
     def test_delete_subscription_with_non_existing_token_returns_error(self):
         response = self.client.delete(
-            reverse('delete-subscription', kwargs={'deletion_token': 'not really a token'}))
+            reverse('delete-subscription', kwargs={'id': 'not really an id'}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND, 'status code does not match')

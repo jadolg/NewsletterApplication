@@ -22,11 +22,11 @@ def subscription_create(request):
 
 
 @api_view(['POST', ])
-def subscription_confirm(request, activation_token):
+def subscription_confirm(request, id):
     """
     Confirms a subscription given an activation token
     """
-    subscription = get_object_or_404(Subscription.objects.all(), activation_token=activation_token)
+    subscription = get_object_or_404(Subscription.objects.all(), id=id)
     subscription.is_active = True
     subscription.save()
     serializer = SubscriptionSerializer(subscription)
@@ -34,11 +34,11 @@ def subscription_confirm(request, activation_token):
 
 
 @api_view(['DELETE', ])
-def subscription_delete(request, deletion_token):
+def subscription_delete(request, id):
     """
     Deletes a subscription given a deletion token
     """
-    subscription = get_object_or_404(Subscription.objects.all(), deletion_token=deletion_token)
+    subscription = get_object_or_404(Subscription.objects.all(), id=id)
     serializer = SubscriptionSerializer(subscription)
     subscription.delete()
     return Response(serializer.data, status=status.HTTP_200_OK)

@@ -18,8 +18,7 @@ class SubscriptionCreateTests(APITestCase):
         self.assertEqual(subscription.name, 'name1', 'name does not match expected value')
         self.assertEqual(subscription.email, 'email@domain.com', 'email does not match expected value')
         self.assertFalse(subscription.is_active, 'is_active is not false')
-        self.assertRegex(str(subscription.activation_token), UUID4_REGEX, 'activation_token is not uuid4')
-        self.assertRegex(str(subscription.deletion_token), UUID4_REGEX, 'deletion_token is not uuid4')
+        self.assertRegex(str(subscription.id), UUID4_REGEX, 'activation_token is not uuid4')
 
         self.assertEqual(json.loads(response.content),
                          {'name': 'name1', 'email': 'email@domain.com', 'is_active': False}, 'expected result mismatch')
