@@ -80,3 +80,7 @@ response
    "name" : "Matt Verne"
 }
 ```
+
+### Metrics
+
+Using [django-prometheus](https://pypi.org/project/django-prometheus/) you can access application relevant metrics under `/metrics`
