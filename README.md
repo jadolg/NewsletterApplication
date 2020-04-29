@@ -78,5 +78,4 @@ response
    "is_active" : false,
    "name" : "Matt Verne"
 }
-
 ```
