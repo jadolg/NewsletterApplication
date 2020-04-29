@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'test_pep8',
     'django_prometheus',
+    'health_check',
+    'health_check.db',
 ]
 
 MIDDLEWARE = [

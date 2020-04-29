@@ -84,3 +84,7 @@ response
 ### Metrics
 
 Using [django-prometheus](https://pypi.org/project/django-prometheus/) you can access application relevant metrics under `/metrics`
+
+### Healthcheck
+
+A healthcheck for the service is available on API under `/health`

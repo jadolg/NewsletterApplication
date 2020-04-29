@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/subscriptions/', include('subscriptions.urls')),
     path('', include('django_prometheus.urls')),
+    path('health/', include('health_check.urls')),
 ]
 
 if settings.DEBUG:
