@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('subscriptions/', include('subscriptions.urls')),
+    path('v1/subscriptions/', include('subscriptions.urls')),
     path('', include('django_prometheus.urls')),
 ]
 

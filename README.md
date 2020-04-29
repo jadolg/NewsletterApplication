@@ -30,7 +30,7 @@ These URLs should contain the subscription secret ID which is used by the servic
 
 curl request
 ```bash
-curl -H "Content-Type: application/json" http://localhost:8000/subscriptions/ -d '{"name":"Matt Verne", "email":"matt@hello.io"}'
+curl -H "Content-Type: application/json" http://localhost:8000/v1/subscriptions/ -d '{"name":"Matt Verne", "email":"matt@hello.io"}'
 ```
 
 response
@@ -51,7 +51,7 @@ The frontend should send a call to the activation endpoint with the token provid
 
 curl request
 ```bash
-curl -X POST http://localhost:8000/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198/confirm
+curl -X POST http://localhost:8000/v1/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198/confirm
 ```
 
 response
@@ -68,7 +68,7 @@ response
 
 curl request
 ```bash
-curl -X DELETE http://localhost:8000/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198
+curl -X DELETE http://localhost:8000/v1/subscriptions/9241a4a6-26ab-4fc6-8ad2-abbb44354198
 ```
 
 response
